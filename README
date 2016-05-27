@@ -1,0 +1,61 @@
+Assumptions:
+
+For the purpose of identifying an author, we will assume a unique unique first and last name combo;
+note affiliations may vary for a given user.  This is because for the given dataset it appears for one article
+a user may have one affiliation, but for another article she may have a different affiation or affiliations.
+Thus if one hashes on affiliation  alone, there will likely be misses.
+
+This is a hard problem, and the solution is to probably generate a corpus for all authors that have all of their
+affiliations, and likely use something like a md license number as a key (or something else thats unique, public, and in use).
+I would have to study the problem further to divine the proper solution.  
+
+Its pretty clear one could dig really deep on this problem, with the name matching alone.  I took a lot of short cuts;  if I were 
+designing a production system, I would seriously consider using SOLR.  It is fast, has very good fuzzy matching and spelling suggestions
+and can scale.
+
+I am pretty sure I didnt get all of these right, but its a start and will show you how I write code and think things through.
+
+The basic idea is I want to:
+  - use the jackson parser to handle the json
+  - use the objects themselves for comparison, thus add a hash method for the entities
+  - build something that in theory would handle other data types and sources
+  - use java collections as much as possible so it is fast
+
+I wrote a unit test to exercise the routines and output the result set.  If you want to use git, give me your account and I will invite you to the 
+repo. I can make it public if you would prefer. 
+
+  - git clone https://github.com/cweisenfluh/zephyr.git
+
+Then run mvn clean compile test
+
+You will see an exception, which I did not swallow because the data is not clean.  As I am sure you are aware.
+
+Anyway, thanks for throwing this my way, and thanks for your consideration.
+
+Warm Regards -
+
+c 
+
+
+-----Result Set:-----
+author: Jatin Shah	pubs: 3
+author: Paul Richardson	pubs: 23
+author: William Bensinger	pubs: 5
+author: Hermann Einsele	pubs: 23
+author: Ravi Vij	pubs: 18
+author: S Vincent Rajkumar	pubs: 71
+author: Sagar Lonial	pubs: 35
+author: David Vesole	pubs: 6
+author: Heinz Ludwig	pubs: 23
+author: María-Victoria Mateos	pubs: 4
+
+
+A few sanity checks:
+
+radar:data craigweisenfluh$ egrep -i '\"lastName\":\"lonial\",\"firstName\":"sagar"' pubmed_result.json | wc
+     35    4677   68679
+
+radar:data craigweisenfluh$ egrep -i '\"lastName\":\"richardson\",\"firstName\":"paul"' pubmed_result.json | wc
+     23    1746   33602
+
+
