@@ -11,6 +11,7 @@ public class AuthorEntity extends Author {
 
 	private Set<String> affiliationSet= null;
 	private Set<String> titleSet = null;
+	private int pubs;
 	
 	public AuthorEntity() {
 		super();
@@ -25,54 +26,15 @@ public class AuthorEntity extends Author {
 		affiliationSet.add(author.getAffiliation());
 	}
 
-	public AuthorEntity(String firstName, String lastName, String titles, String affiliation) {
+	public AuthorEntity(String firstName, String lastName, String titles, String affiliation, int pubs) {
 		super(firstName, lastName, affiliation);
 		this.affiliationSet = new HashSet<String>();;
 		this.titleSet = new HashSet<String>();
 		this.affiliationSet.add(affiliation);
+		this.pubs = pubs;
 		addTitles(titles);
 	}
-
-//	@Override
-//	public int hashCode() {
-//		int hash = 1;
-//		hash = (SALT * hash) + ((firstName == null) ? 0 : firstName.hashCode());
-//		hash = (SALT * hash) + ((lastName == null) ? 0 : lastName.hashCode());
-//			// should always hash the same
-//		return hash;
-//	}
-//
-//	@Override
-//	public boolean equals(Object object) {
-//		if (this == object) {
-//			return true;
-//		}
-//
-//		if (object == null) {
-//			return false;
-//		}
-//		
-////		if (getClass() != object.getClass()) {
-////			return false;
-////		}
-//		
-//		AuthorEntity ae = (AuthorEntity)object;
-//		
-//		if (firstName != null) {
-//			if (ae.getFirstName() == null || firstName.equals(ae.getFirstName()) != true) {
-//				return false;
-//			}
-//		 }
-//		
-//		if (lastName != null) {
-//			if (ae.getLastName() == null || lastName.equals(ae.getLastName()) != true) {
-//				return false;
-//			}
-//		 }
-//	
-//		return true;
-//	}
-
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -114,5 +76,13 @@ public class AuthorEntity extends Author {
 
 	public void setTitles(Set<String> titleSet) {
 		this.titleSet = titleSet;
+	}
+
+	public int getPubs() {
+		return pubs;
+	}
+
+	public void setPubs(int pubs) {
+		this.pubs = pubs;
 	}
 }

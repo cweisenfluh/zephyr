@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zephyr.model.PubMedEntry;
 
 	// would probably implememnt this as a service
-public class PubMedLoader implements ILoader {
+public class PubMedLoader implements ILoader<PubMedEntry> {
 	final static Charset ENCODING = StandardCharsets.UTF_8;
 	
 	public PubMedLoader() {

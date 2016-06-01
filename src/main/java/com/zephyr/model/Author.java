@@ -125,10 +125,6 @@ public class Author {
 			return false;
 		}
 		
-//		if (getClass() != object.getClass()) {
-//			return false;
-//		}
-		
 		Author ae = (Author)object;
 		
 		if (this.getFirstLast() == null || ae.getFirstLast() == null) {
@@ -137,19 +133,6 @@ public class Author {
 		
 		return this.getFirstLast().equals(ae.getFirstLast());
 		
-//		if (firstName != null) {
-//			if (ae.getFirstName() == null || firstName.equals(ae.getFirstName()) != true) {
-//				return false;
-//			}
-//		 }
-//		
-//		if (lastName != null) {
-//			if (ae.getLastName() == null || lastName.equals(ae.getLastName()) != true) {
-//				return false;
-//			}
-//		 }
-//
-//		return true;
 	}
 
 	public String getFirstName() {
